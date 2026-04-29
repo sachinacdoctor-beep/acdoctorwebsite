@@ -1,17 +1,6 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "www.figma.com",
-        pathname: "/api/mcp/asset/**",
-      },
-    ],
-  },
-  // Enable strict mode for React
-  reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
 };
 
-export default nextConfig;
+module.exports = nextConfig;

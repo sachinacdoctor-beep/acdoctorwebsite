@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "ac-doctor-ef5e0"
+  },
+  "targets": {
+    "ac-doctor-ef5e0": {
+      "hosting": {
+        "acdoctor": [
+          "acdoctor"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "project": {
+    "prod": "acdoctor"
+  }
+}

@@ -20,7 +20,6 @@ export function ServicesSection() {
         <SectionHeader
           title="Book AC Service"
           subtitle="Professional AC services delivered to your home. Choose from our wide range of expert solutions."
-          isVisible={isInView}
           className={`transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         />
 
