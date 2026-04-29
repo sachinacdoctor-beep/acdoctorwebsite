@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Poppins:wght@400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Design Tokens ───────────────────────────────────── */
+:root {
+  --color-primary: #e31e25;
+  --color-primary-dark: #b31219;
+  --color-white-bg: #f5f5f5;
+  --color-black-bg: #161616;
+  --color-text-primary: #222222;
+  --color-text-secondary: #d9d9d9;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-card: 0px 0px 34px 0px rgba(0, 0, 0, 0.15);
+}
+
+.dark {
+  --color-white-bg: #1a1a1a;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #888;
+}
+
+/* ─── Base Reset ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-montserrat);
+  background-color: var(--color-white-bg);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Utility Layer ───────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-8 md:px-12 lg:px-16 xl:px-[7.5rem];
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .opacity-0-init { opacity: 0; }
+}
+
+/* ─── Component Layer ─────────────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-pill
+           bg-brand-primary text-white font-semibold text-nav-item
+           transition-all duration-250 hover:bg-brand-primary-dark
+           hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0
+           focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-pill
+           border border-white/60 text-white font-semibold text-nav-item
+           bg-white/10 backdrop-blur-sm
+           transition-all duration-250 hover:bg-white/20 hover:border-white
+           hover:-translate-y-0.5 active:translate-y-0
+           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+  }
+
+  .btn-muted {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-pill
+           bg-black/10 dark:bg-white/10 text-brand-primary font-semibold text-nav-item
+           transition-all duration-250 hover:bg-black/20 hover:-translate-y-0.5
+           focus:outline-none;
+  }
+
+  .card-base {
+    @apply bg-brand-white dark:bg-brand-black rounded-card shadow-card
+           transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .section-title {
+    @apply font-montserrat font-semibold italic text-section-title text-text-primary dark:text-brand-white;
+  }
+
+  .section-subtitle {
+    @apply font-montserrat font-extralight text-body-lg text-text-primary/70 dark:text-brand-white/70;
+  }
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 3px;
+}
