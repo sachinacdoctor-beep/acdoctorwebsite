@@ -14,52 +14,52 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SERVICES: ServiceCard[] = [
   {
-    id: "sterilisation",
-    icon: "🌿",
-    title: "Sterilisation",
+    id: "service",
+    title: "Service",
     description:
-      "Professional AC sterilisation to eliminate bacteria, fungi and allergens for a healthier indoor environment.",
-    href: "#book",
+      "Deep cleaning and sanitization to remove dust, bacteria, and bad odor for fresh cooling.",
+    icon: "🧼",
+    iconImage: "/assets/icons/service.png",
   },
   {
     id: "repair",
-    icon: "🔧",
     title: "Repair",
     description:
-      "Expert diagnosis and repair for all AC brands. Fast turnaround and genuine spare parts guaranteed.",
-    href: "#book",
+      "Quick diagnosis and expert repair for cooling issues, gas leakage, and breakdowns.",
+    icon: "🔧",
+    iconImage: "/assets/icons/repair.png",
   },
   {
     id: "installation",
-    icon: "⚙️",
     title: "Installation",
     description:
-      "Precision installation by certified technicians ensuring optimal performance and energy efficiency.",
-    href: "#book",
+      "Safe and professional AC installation with proper fitting and performance testing.",
+    icon: "⚙️",
+    iconImage: "/assets/icons/installation.png",
   },
   {
     id: "compressor",
-    icon: "💨",
     title: "Compressor",
     description:
-      "Compressor replacement and overhaul with warranty. Supporting all major brands and tonnage.",
-    href: "#book",
+      "Compressor checkup, repair, and replacement by trained technicians.",
+    icon: "🧯",
+    iconImage: "/assets/icons/compressor.png",
   },
   {
     id: "gas-charging",
-    icon: "❄️",
     title: "Gas Charging",
     description:
-      "Refrigerant top-up and leak detection using industry-standard equipment for peak cooling performance.",
-    href: "#book",
+      "AC gas refill service for better cooling and improved energy efficiency.",
+    icon: "🛢️",
+    iconImage: "/assets/icons/gas.png",
   },
   {
     id: "other",
-    icon: "➕",
     title: "Other",
     description:
-      "Condenser cleaning, PCB repair, drain flushing and more. Contact us for any AC-related need.",
-    href: "#book",
+      "PCB repair, water leakage, wiring issues, remote setup, and more.",
+    icon: "➡️",
+    iconImage: "/assets/icons/other.png",
   },
 ];
 

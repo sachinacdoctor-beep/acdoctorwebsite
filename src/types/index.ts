@@ -10,10 +10,10 @@ export interface NavItem {
 
 export interface ServiceCard {
   id: string;
-  icon: string;
   title: string;
   description: string;
-  href: string;
+  icon: string;           // keep for fallback
+  iconImage?: string;     // new: path like "/assets/icons/repair.png"
 }
 
 export interface ProductCard {
