@@ -28,6 +28,7 @@ export interface ProductCard {
 
 export interface QuoteCard {
   id: string;
+  iconImage: string;
   icon: string;
   title: string;
   description: string;

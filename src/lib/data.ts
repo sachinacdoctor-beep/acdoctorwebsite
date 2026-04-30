@@ -66,24 +66,28 @@ export const SERVICES: ServiceCard[] = [
 export const QUOTE_CARDS: QuoteCard[] = [
   {
     id: "sell-old-ac",
+    iconImage: "/assets/icons/old_ac.png",
     icon: "📦",
     title: "Sell Old AC",
     description: "Get the best price for your old AC unit. Quick evaluation and instant quote.",
   },
   {
     id: "amc",
+    iconImage: "/assets/icons/.png",
     icon: "🛡️",
     title: "AMC",
     description: "Annual Maintenance Contract for worry-free AC performance all year long.",
   },
   {
     id: "free-consultancy",
+    iconImage: "/assets/icons/.png",
     icon: "💬",
     title: "Free Consultancy",
     description: "Expert advice on the best AC solution tailored to your space and budget.",
   },
   {
     id: "copper-pipe",
+    iconImage: "/assets/icons/.png",
     icon: "🔩",
     title: "Copper Pipe",
     description: "High-quality copper piping supply and installation for durable AC systems.",
