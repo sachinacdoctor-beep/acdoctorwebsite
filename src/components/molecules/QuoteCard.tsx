@@ -16,7 +16,7 @@ export function QuoteCard({
 }: QuoteCardProps) {
   return (
     <div
-    //         border border-dashed border-[#e31e25]/40 dark:border-[#e31e25]/30
+    //   border border-dashed border-[#e31e25]/40 dark:border-[#e31e25]/30
 
       className="
         relative flex flex-col items-center text-center
