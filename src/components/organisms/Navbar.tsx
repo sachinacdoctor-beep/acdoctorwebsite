@@ -97,7 +97,7 @@ export function Navbar() {
                 height="20"
                 viewBox="0,0,256,256"
               >
-                <g fill-rule="nonzero">
+                <g fillRule="nonzero">
                   <g transform="scale(5.12,5.12)">
                     <path
                       fill="#ffffff"
@@ -119,7 +119,7 @@ export function Navbar() {
                 height="18"
                 viewBox="0,0,256,256"
               >
-                <g fill-rule="nonzero">
+                <g fillRule="nonzero">
                   <g transform="scale(5.12,5.12)">
                     <path
                       fill="#ffffff"
@@ -258,7 +258,7 @@ export function Navbar() {
                 height="20"
                 viewBox="0,0,256,256"
               >
-                <g fill-rule="nonzero">
+                <g fillRule="nonzero">
                   <g transform="scale(5.12,5.12)">
                     <path
                       fill="#e31e25"
@@ -280,7 +280,7 @@ export function Navbar() {
                 height="18"
                 viewBox="0,0,256,256"
               >
-                <g fill-rule="nonzero">
+                <g fillRule="nonzero">
                   <g transform="scale(5.12,5.12)">
                     <path
                       fill="#e31e25"
