@@ -106,7 +106,7 @@ export function AppSection() {
             {/* ── Mascot — closer to phone, bottom-anchored ── */}
             {ASSETS.mascot && (
               <div
-                className="absolute z-30 bottom-0 left-[12%] w-[22%] sm:w-[18%]"
+                className="absolute z-30 bottom-10 md:bottom-0 left-[12%] w-[22%] sm:w-[18%]"
                 aria-hidden="true"
               >
                 <Image
