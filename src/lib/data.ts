@@ -157,8 +157,12 @@ export const ASSETS = {
     "https://www.figma.com/api/mcp/asset/c6b16f2b-8a9a-4223-9ced-a1d03d7d06ce",
   ctaBg:
     "https://www.figma.com/api/mcp/asset/1352ddbd-6f20-4d82-9467-18c496b9948a",
+  // appMockup:
+  //   "https://www.figma.com/api/mcp/asset/7933b399-109e-4fdc-87c6-9ff1895c1f2f",
   appMockup:
-    "https://www.figma.com/api/mcp/asset/7933b399-109e-4fdc-87c6-9ff1895c1f2f",
+    "/assets/images/app_mockup.png",
+  mascot:
+  "/assets/images/mascot.png",
   productImage:
     "https://www.figma.com/api/mcp/asset/4f54c9bc-ff55-4f3f-8d43-2e58a494b49e",
   oemBrand:
