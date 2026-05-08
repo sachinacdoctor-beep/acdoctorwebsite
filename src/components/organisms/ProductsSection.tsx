@@ -20,16 +20,17 @@ export function ProductsSection() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-  const fallbackProducts: ApiProduct[] = Array.from({ length: 3 }, (_, i) => ({
+
+  const fallbackProducts: ApiProduct[] = Array.from({ length: 4 }, (_, i) => ({
     _id: `fallback-${i}`,
-    name: "Inverter Split AC",
+    name: "HITACHI IZEN 3500STXL Convertible 1.5 Ton 3 Star Inverter Split AC with Octa Sensor",
     image: "/assets/images/ac_outdoor.png",
-    mrp: 42990,
-    customerPrice: 34990,
+    mrp: 24000,
+    customerPrice: 21000,
   }));
+
   const visibleProducts = products.length > 0 ? products : fallbackProducts;
 
-  // 👉 Fetch API
   const fetchProducts = async (pageNumber: number) => {
     try {
       setLoading(true);
@@ -54,14 +55,12 @@ export function ProductsSection() {
     fetchProducts(page);
   }, [page]);
 
-  // 👉 Scroll carousel
   const scroll = useCallback((dir: "left" | "right") => {
     const el = carouselRef.current;
     if (!el) return;
     el.scrollBy({ left: dir === "right" ? 316 : -316, behavior: "smooth" });
   }, []);
 
-  // 👉 Pagination handlers
   const handleNext = () => {
     if (page < totalPages) setPage((prev) => prev + 1);
   };
@@ -70,106 +69,150 @@ export function ProductsSection() {
     if (page > 1) setPage((prev) => prev - 1);
   };
 
+  const moveProducts = (dir: "left" | "right") => {
+    scroll(dir);
+    if (dir === "right") {
+      handleNext();
+    } else {
+      handlePrev();
+    }
+  };
+
   return (
     <section
       id="products"
       ref={ref}
       aria-label="New Products"
-      className="py-[28px] md:py-20 bg-[#f5f5f5] dark:bg-[#111] overflow-hidden"
+      className="overflow-hidden bg-[#f5f5f5] py-[28px] md:py-[80px] dark:bg-[#111]"
     >
-      <div className="max-w-[1362px] mx-auto px-4 sm:px-8 lg:px-10 flex flex-col gap-[16px] md:gap-12">
-        {/* Header */}
+      <div className="mx-auto flex max-w-[1362px] flex-col gap-[16px] px-5 sm:px-8 md:px-0 md:gap-0">
         <div
           className={[
-            "flex flex-row md:flex-col items-center justify-between md:justify-start text-left md:text-center gap-[10px] transition-all duration-700",
+            "flex items-center justify-between gap-4 transition-all duration-700 md:mx-auto md:w-[655px] md:flex-col md:justify-start md:text-center",
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
           ].join(" ")}
         >
-          <h2 className="font-semibold text-[26px] md:text-[clamp(28px,3vw,44px)] leading-[34px] text-[#222] dark:text-[#f5f5f5]">
+          <h2 className="font-semibold text-[30px] leading-[38px] text-[#222] md:w-full md:text-[44px] md:leading-[66px] dark:text-[#f5f5f5]">
             New Product
           </h2>
-          <p className="hidden md:block text-[clamp(15px,1.4vw,20px)] text-[#222]/70 dark:text-[#f5f5f5]/60 max-w-[655px]">
+
+          <p className="hidden w-full text-center text-[20px] font-normal leading-[32px] text-[#222] md:block dark:text-[#f5f5f5]/70">
             Explore top-quality inverter ACs with energy-saving performance and
             powerful cooling for every season.
           </p>
-          <div className="md:hidden flex items-center gap-3 text-[#e31e25]" aria-hidden="true">
-            <span className="text-[18px]">‹</span>
-            <span className="text-[18px]">›</span>
+
+          <div className="flex items-center gap-[10px] md:hidden">
+            <button
+              type="button"
+              onClick={() => moveProducts("left")}
+              aria-label="Previous products"
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[#e31e25]/10"
+            >
+              <Image
+                src="/assets/icons/left_arrow.png"
+                alt=""
+                width={18}
+                height={18}
+                className="object-contain"
+                aria-hidden="true"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => moveProducts("right")}
+              aria-label="Next products"
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[#e31e25]/10"
+            >
+              <Image
+                src="/assets/icons/right_arrow.png"
+                alt=""
+                width={18}
+                height={18}
+                className="object-contain"
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </div>
 
-        {/* Carousel */}
         <div
           className={[
-            "relative flex items-center gap-4 transition-all duration-700 delay-200",
+            "relative flex items-center transition-all delay-200 duration-700 md:mt-[88px] md:h-[383px]",
             isInView ? "opacity-100" : "opacity-0",
           ].join(" ")}
         >
-          {/* Left */}
           <button
-            onClick={() => {
-              scroll("left");
-              handlePrev();
-            }}
-            className="hidden md:block w-[50px] h-[50px] rounded-full hover:bg-black/5 dark:hover:bg-white/10"
+            type="button"
+            onClick={() => moveProducts("left")}
+            aria-label="Previous products"
+            className="absolute left-0 top-1/2 z-10 hidden h-[50px] w-[50px] -translate-y-1/2 items-center justify-center transition-opacity hover:opacity-75 md:flex"
           >
-            ◀
+            <Image
+              src="/assets/icons/left_arrow.png"
+              alt=""
+              width={50}
+              height={50}
+              className="object-contain"
+              aria-hidden="true"
+            />
           </button>
 
-          {/* Products */}
-          <div className="w-full flex justify-center">
+          <div className="flex w-full justify-center md:px-[69px]">
             <div
               ref={carouselRef}
               className={[
-                "pb-1",
+                "w-full pb-1 md:h-[383px] md:max-w-[1221px] md:pb-0",
                 visibleProducts.length <= 4
-                  ? "grid grid-cols-3 md:flex md:justify-center md:flex-wrap overflow-hidden gap-[14px] md:gap-[34px]"
-                  : "flex gap-[34px] overflow-x-auto snap-x snap-mandatory",
+                  ? "grid grid-cols-3 gap-[14px] overflow-hidden max-md:[&>*:nth-child(n+4)]:hidden md:flex md:flex-nowrap md:justify-start md:gap-[34px]"
+                  : "flex gap-[14px] overflow-x-auto snap-x snap-mandatory max-md:[&>*:nth-child(n+4)]:hidden md:gap-[34px]",
               ].join(" ")}
               style={{ scrollbarWidth: "none" }}
             >
               {loading ? (
-                <p className="px-4">Loading...</p>
+                <p className="col-span-3 px-4 text-sm text-[#222]/70 dark:text-[#f5f5f5]/70">
+                  Loading...
+                </p>
               ) : (
                 visibleProducts.map((product) => (
                   <article
                     key={product._id}
-                    className="flex-none w-full md:w-[260px] lg:w-[282px] bg-white dark:bg-[#1a1a1a] rounded-[5px] md:rounded-[10px] shadow-md flex flex-col overflow-hidden"
+                    className="flex w-full flex-none flex-col overflow-hidden rounded-[5px] bg-white shadow-sm md:h-[383px] md:w-[282px] md:rounded-[10px] md:shadow-[0px_0px_14px_0px_rgba(0,0,0,0.15)] dark:bg-[#1a1a1a]"
                   >
-                    {/* Image */}
-                    <div className="relative w-full aspect-[123/167] md:aspect-[254/93] md:mt-[9%] md:px-[5%]">
+                    <div className="relative mx-[7px] mt-[17px] aspect-[116/64] md:mx-auto md:mt-[35px] md:h-[93px] md:w-[254px] md:aspect-auto">
                       <Image
                         src={product.image || "/fallback.png"}
                         alt={product.name}
                         fill
-                        className="object-cover md:object-contain"
+                        className="object-contain"
+                        sizes="(max-width: 768px) 30vw, 282px"
                       />
                     </div>
 
-                    {/* Info */}
-                    <div className="hidden md:block px-[14px] pt-[10%] pb-[7%]">
-                      <p className="font-semibold text-[16px] mb-3">
+                    <div className="px-[7px] pb-[12px] pt-[12px] md:flex md:flex-1 md:flex-col md:px-[14px] md:pb-[27px] md:pt-[41px]">
+                      <p className="mb-[8px] line-clamp-4 font-semibold text-[10px] leading-[12px] text-[#222] md:mb-0 md:min-h-[88px] md:text-[18px] md:leading-[22px] dark:text-[#f5f5f5]">
                         {product.name}
                       </p>
 
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-[20px] font-semibold">
-                          ₹{product.customerPrice.toLocaleString()}
+                      <div className="mb-[10px] flex items-center gap-[5px] md:mb-0 md:mt-[14px] md:gap-[6px]">
+                        <span className="text-[14px] font-semibold leading-[18px] text-[#222] md:text-[26px] md:leading-[38px] dark:text-[#f5f5f5]">
+                          &#8377;{product.customerPrice.toLocaleString()}
                         </span>
-                        <span className="line-through text-sm opacity-60">
-                          ₹{product.mrp.toLocaleString()}
+                        <span className="text-[7px] text-[#222]/60 line-through md:text-[16px] md:leading-[22px] dark:text-[#f5f5f5]/60">
+                          &#8377;{product.mrp.toLocaleString()}
                         </span>
                       </div>
 
                       <button
+                        type="button"
                         onClick={() =>
                           document
                             .getElementById("book")
                             ?.scrollIntoView({ behavior: "smooth" })
                         }
-                        className="text-red-600 border-b border-red-600"
+                        className="inline-flex w-fit items-center gap-[5px] border-b border-[#e31e25] text-[8px] font-semibold leading-[12px] text-[#e31e25] md:mt-auto md:gap-[10px] md:pb-[2px] md:text-[16px] md:leading-[22px]"
                       >
-                        Book Now →
+                        Book Now
+                        <span aria-hidden="true">&rarr;</span>
                       </button>
                     </div>
                   </article>
@@ -178,20 +221,24 @@ export function ProductsSection() {
             </div>
           </div>
 
-          {/* Right */}
           <button
-            onClick={() => {
-              scroll("right");
-              handleNext();
-            }}
-            className="hidden md:block w-[50px] h-[50px] rounded-full hover:bg-black/5 dark:hover:bg-white/10"
+            type="button"
+            onClick={() => moveProducts("right")}
+            aria-label="Next products"
+            className="absolute right-0 top-1/2 z-10 hidden h-[50px] w-[50px] -translate-y-1/2 items-center justify-center transition-opacity hover:opacity-75 md:flex"
           >
-            ▶
+            <Image
+              src="/assets/icons/right_arrow.png"
+              alt=""
+              width={50}
+              height={50}
+              className="object-contain"
+              aria-hidden="true"
+            />
           </button>
         </div>
 
-        {/* Page Indicator */}
-        <div className="hidden md:block text-center text-sm text-gray-500">
+        <div className="hidden text-center text-sm text-gray-500 md:block">
           Page {page} of {totalPages}
         </div>
       </div>
