@@ -32,7 +32,7 @@ export function CTASection() {
       ref={ref}
       aria-label="Contact Us"
       className="relative w-full overflow-hidden bg-[#0d0d0d]"
-      style={{ aspectRatio: "auto", minHeight: "clamp(520px, 80vh, 900px)" }}
+      // style={{ minHeight: "clamp(420px, 60vh, 820px)" }}
     >
       {/* ── Full-bleed background (dark room + red beam) ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -46,7 +46,7 @@ export function CTASection() {
 
       {/* ── AC Unit image — right-centre ── */}
       <div
-        className="absolute pointer-events-none inset-x-0 bottom-0 flex items-end justify-center md:inset-y-0 md:right-0 md:left-auto md:items-center md:pr-6 sm:md:pr-[70px] lg:pr-[110px]"
+        className="absolute pointer-events-none hidden md:flex inset-x-0 bottom-0 items-end justify-center md:inset-y-0 md:right-0 md:left-auto md:items-center md:pr-6 lg:pr-[110px]"
         aria-hidden="true"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -58,7 +58,7 @@ export function CTASection() {
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto flex items-start md:items-center justify-center md:justify-start h-full px-4 sm:px-[70px] lg:px-[110px] py-[46px] md:py-12">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto flex items-start md:items-center justify-center md:justify-start h-full px-4 sm:px-[70px] lg:px-[110px] py-6 md:py-12">
         {/* ── Contact Card ── */}
         <div
           className={[
