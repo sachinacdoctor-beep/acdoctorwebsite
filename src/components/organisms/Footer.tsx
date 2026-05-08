@@ -1,21 +1,16 @@
 import Link from "next/link";
 
 /* ── Figma assets — replace with /public paths before go-live ── */
-const IMG_LOGO_CIRCLE =
-  "https://www.figma.com/api/mcp/asset/b4b31db4-268e-49e1-b8a1-57d9e1520632";
-const IMG_LOGO_MASCOT =
-  "https://www.figma.com/api/mcp/asset/9cc0729b-a0ab-4489-80f2-6785733f00d2";
-const ICON_MAIL =
-  "https://www.figma.com/api/mcp/asset/053c0411-c3fe-44f5-8531-6a3ca3ff0db2";
-const ICON_PHONE =
-  "https://www.figma.com/api/mcp/asset/3635e170-737d-4998-a5ca-f23b8341b00a";
+const IMG_LOGO_MASCOT = "./assets/logo/ac_doctor.png";
+const ICON_MAIL = "./assets/icons/mail.png";
+const ICON_PHONE = "./assets/icons/phone.png";
 
 /* ── Inline social SVGs matching Figma vector icons ── */
 function IconFacebook() {
   return (
     <svg
-      width="26"
-      height="26"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"
@@ -24,11 +19,12 @@ function IconFacebook() {
     </svg>
   );
 }
+
 function IconLinkedIn() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"
@@ -39,11 +35,12 @@ function IconLinkedIn() {
     </svg>
   );
 }
+
 function IconX() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"
@@ -52,11 +49,12 @@ function IconX() {
     </svg>
   );
 }
+
 function IconInstagram() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -71,11 +69,12 @@ function IconInstagram() {
     </svg>
   );
 }
+
 function IconYouTube() {
   return (
     <svg
-      width="32"
-      height="32"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"
@@ -112,35 +111,37 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer aria-label="Site footer" className="bg-[#222] overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-[119px] pt-[44px] pb-[52px]">
-        {/* ══ Main 4-column grid ══ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[260px_1fr_1fr_1fr] gap-12 lg:gap-6 xl:gap-10">
+    <footer aria-label="Site footer" className="bg-[#222] relative">
+      {/* ── Cyan accent border on desktop ── */}
+      {/* <div className="hidden lg:block absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#00d4ff] to-transparent opacity-60"></div> */}
+
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 lg:pl-[80px] lg:pr-[100px]">
+        {/* ══ DESKTOP: 4-column grid layout ══ */}
+        <div className="hidden lg:grid lg:grid-cols-[240px_1fr_1fr_1fr] gap-20 py-[44px] relative">
           {/* ── Col 1: Logo + Brand name + Socials ── */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center lg:items-start">
             {/* Logo mark — yellow circle background with mascot centered */}
             <div className="w-[118px] h-[118px] mb-4 shrink-0 rounded-full bg-[#FFDF00] flex items-center justify-center overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={"./assets/logo/ac_doctor.png"}
+                src={IMG_LOGO_MASCOT}
                 alt="AC Doctor mascot"
                 className="w-[85%] h-[85%] object-contain"
               />
             </div>
 
-            {/* Brand name — Inter SemiBold 27px tracking-[1.08px] */}
-            <p className="font-['Inter',sans-serif] font-semibold text-[27px] text-white leading-normal tracking-[1.08px] mb-[30px]">
+            {/* Brand name — Inter SemiBold 27px */}
+            <p className="font-['Inter',sans-serif] font-semibold text-[27px] text-white leading-normal tracking-[1.08px] mb-[30px] text-center lg:text-left">
               AC DOCTOR
             </p>
 
-            {/* Social icons row — gap-[16px], icon colour #d9d9d9 → red on hover */}
-            <div className="flex items-center gap-[16px]">
+            {/* Social icons row */}
+            <div className="flex items-center gap-[12px]">
               {SOCIAL.map(({ label, Icon }) => (
                 <Link
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200"
+                  className="text-[#888] hover:text-[#e31e25] transition-colors duration-200"
                 >
                   <Icon />
                 </Link>
@@ -148,17 +149,38 @@ export function Footer() {
             </div>
           </div>
 
+          {/* ── Decorative dotted diagonal line ── */}
+          {/* <svg
+            className="absolute w-full h-full pointer-events-none"
+            style={{
+              top: 0,
+              left: "240px",
+              overflow: "visible",
+            }}
+          >
+            <line
+              x1="160"
+              y1="80"
+              x2="320"
+              y2="120"
+              stroke="#00d4ff"
+              strokeWidth="2"
+              strokeDasharray="6,4"
+              opacity="0.4"
+            />
+          </svg> */}
+
           {/* ── Col 2: Our Links ── */}
           <div className="flex flex-col">
             <h4 className="font-['Poppins',sans-serif] font-medium text-[24px] text-[#f5f5f5] leading-normal mb-[44px]">
               Our Links
             </h4>
-            <ul className="flex flex-col gap-[30px]" role="list">
+            <ul className="flex flex-col gap-[28px]" role="list">
               {OUR_LINKS.map(({ label, href }) => (
                 <li key={label}>
                   <Link
                     href={href}
-                    className="font-['Poppins',sans-serif] font-normal text-[22px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
+                    className="font-['Poppins',sans-serif] font-normal text-[18px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
                   >
                     {label}
                   </Link>
@@ -172,12 +194,12 @@ export function Footer() {
             <h4 className="font-['Poppins',sans-serif] font-medium text-[24px] text-[#f5f5f5] leading-normal mb-[44px]">
               Other Pages
             </h4>
-            <ul className="flex flex-col gap-[30px]" role="list">
+            <ul className="flex flex-col gap-[28px]" role="list">
               {OTHER_PAGES.map(({ label, href }) => (
                 <li key={label}>
                   <Link
                     href={href}
-                    className="font-['Poppins',sans-serif] font-normal text-[22px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
+                    className="font-['Poppins',sans-serif] font-normal text-[18px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
                   >
                     {label}
                   </Link>
@@ -192,58 +214,165 @@ export function Footer() {
               Global HQ
             </h4>
 
-            <div className="flex flex-col gap-[30px]">
-              {/* Company name — Poppins Regular 25px */}
-              <p className="font-['Poppins',sans-serif] font-normal text-[25px] text-[#d9d9d9] leading-normal">
+            <div className="flex flex-col gap-[28px]">
+              {/* Company name */}
+              <p className="font-['Poppins',sans-serif] font-normal text-[18px] text-[#d9d9d9] leading-normal">
                 AC <span className="uppercase">Doctor</span> Private Ltd.
               </p>
 
               {/* Email */}
-              <div className="flex items-center gap-[14px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="flex items-start gap-[12px]">
                 <img
-                  src={"./assets/icons/mail.png"}
+                  src={ICON_MAIL}
                   alt=""
                   aria-hidden="true"
-                  className="w-[20px] h-[20px] shrink-0 object-contain opacity-80"
+                  className="w-[16px] h-[16px] shrink-0 object-contain opacity-80 mt-1"
                 />
                 <a
                   href="mailto:info@acdoctor.in"
-                  className="font-['Montserrat',sans-serif] font-medium text-[22px] text-[#d9d9d9] underline decoration-solid hover:text-[#e31e25] transition-colors leading-normal"
+                  className="font-['Montserrat',sans-serif] font-medium text-[16px] text-[#d9d9d9] underline decoration-solid hover:text-[#e31e25] transition-colors leading-normal"
                 >
                   info@acdoctor.in
                 </a>
               </div>
 
               {/* Phone */}
-              <div className="flex items-center gap-[14px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="flex items-start gap-[12px]">
                 <img
-                  src={"./assets/icons/phone.png"}
+                  src={ICON_PHONE}
                   alt=""
                   aria-hidden="true"
-                  className="w-[20px] h-[20px] shrink-0 object-contain opacity-80"
+                  className="w-[16px] h-[16px] shrink-0 object-contain opacity-80 mt-1"
                 />
                 <a
                   href="tel:+918959898989"
-                  className="font-['Poppins',sans-serif] font-normal text-[22px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors leading-normal"
+                  className="font-['Poppins',sans-serif] font-normal text-[16px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors leading-normal"
                 >
-                  +91&nbsp;&nbsp;89598 98989
+                  +91 89598 98989
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── Divider ── */}
-        <hr className="mt-14 mb-6 border-white/10" />
+        {/* ══ MOBILE & TABLET: Single column layout ══ */}
+        <div className="lg:hidden flex flex-col gap-8 sm:gap-12 py-8 sm:py-12">
+          {/* Logo + Brand name + Socials */}
+          <div className="flex flex-col items-center">
+            <div className="w-[105px] h-[105px] sm:w-[118px] sm:h-[118px] mb-3 sm:mb-4 shrink-0 rounded-full bg-[#FFDF00] flex items-center justify-center overflow-hidden">
+              <img
+                src={IMG_LOGO_MASCOT}
+                alt="AC Doctor mascot"
+                className="w-[85%] h-[85%] object-contain"
+              />
+            </div>
 
-        {/* ── Bottom copyright bar ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-['Montserrat',sans-serif] font-extralight text-sm text-[#d9d9d9]/60 text-center sm:text-left">
+            <p className="font-['Inter',sans-serif] font-semibold text-[24px] sm:text-[27px] text-white leading-normal tracking-[0.96px] sm:tracking-[1.08px] mb-[30px]">
+              AC DOCTOR
+            </p>
+
+            <div className="flex items-center gap-3 sm:gap-4">
+              {SOCIAL.map(({ label, Icon }) => (
+                <Link
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="text-[#888] hover:text-[#e31e25] transition-colors duration-200"
+                >
+                  <Icon />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Links in two columns */}
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-['Poppins',sans-serif] font-medium text-[18px] sm:text-[24px] text-[#f5f5f5] leading-normal mb-6 sm:mb-[30px]">
+                Our Links
+              </h4>
+              <ul className="flex flex-col gap-4 sm:gap-[20px]" role="list">
+                {OUR_LINKS.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="font-['Poppins',sans-serif] font-normal text-[16px] sm:text-[18px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-['Poppins',sans-serif] font-medium text-[18px] sm:text-[24px] text-[#f5f5f5] leading-normal mb-6 sm:mb-[30px]">
+                Other Pages
+              </h4>
+              <ul className="flex flex-col gap-4 sm:gap-[20px]" role="list">
+                {OTHER_PAGES.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="font-['Poppins',sans-serif] font-normal text-[16px] sm:text-[18px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors duration-200 leading-normal"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Company Info */}
+          <div className="flex flex-col">
+            <p className="font-['Poppins',sans-serif] font-normal text-[18px] sm:text-[20px] text-[#d9d9d9] leading-normal mb-4">
+              AC <span className="uppercase">Doctor</span> Private Ltd.
+            </p>
+
+            <div className="flex items-start gap-[12px] mb-4">
+              <img
+                src={ICON_MAIL}
+                alt=""
+                aria-hidden="true"
+                className="w-[16px] h-[16px] shrink-0 object-contain opacity-80 mt-1"
+              />
+              <a
+                href="mailto:info@acdoctor.in"
+                className="font-['Montserrat',sans-serif] font-medium text-[16px] text-[#d9d9d9] underline decoration-solid hover:text-[#e31e25] transition-colors leading-normal"
+              >
+                info@acdoctor.in
+              </a>
+            </div>
+
+            <div className="flex items-start gap-[12px]">
+              <img
+                src={ICON_PHONE}
+                alt=""
+                aria-hidden="true"
+                className="w-[16px] h-[16px] shrink-0 object-contain opacity-80 mt-1"
+              />
+              <a
+                href="tel:+918959898989"
+                className="font-['Poppins',sans-serif] font-normal text-[16px] text-[#d9d9d9] hover:text-[#e31e25] transition-colors leading-normal"
+              >
+                +91 89598 98989
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ══ DIVIDER ══ */}
+      <hr className="border-white/10" />
+
+      {/* ══ BOTTOM COPYRIGHT BAR ══ */}
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 lg:pl-[80px] lg:pr-[100px] py-6 sm:py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="font-['Montserrat',sans-serif] font-extralight text-xs sm:text-[13px] text-[#d9d9d9]/60">
             © {year} AC DOCTOR Private LTD. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-6 font-['Montserrat',sans-serif] font-extralight text-sm text-[#d9d9d9]/60">
+          <div className="flex items-center gap-4 sm:gap-6 font-['Montserrat',sans-serif] font-extralight text-xs sm:text-[13px] text-[#d9d9d9]/60">
             <Link href="#" className="hover:text-[#e31e25] transition-colors">
               Privacy Policy
             </Link>
