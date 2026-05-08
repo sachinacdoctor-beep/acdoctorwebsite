@@ -11,23 +11,8 @@ const IMG_CTA =
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  // Persist dark mode preference
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
-    }
-  }, []);
-
-  const toggleDark = useCallback(() => {
-    const next = !darkMode;
-    setDarkMode(next);
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-  }, [darkMode]);
+  const darkMode = false;
+  const toggleDark = () => undefined;
 
   // Scroll listener for sticky state
   useEffect(() => {
@@ -44,8 +29,8 @@ export function Navbar() {
       className={[
         "fixed top-0 inset-x-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-white/95 dark:bg-[#111]/95 backdrop-blur-md shadow-[0_2px_24px_rgba(0,0,0,0.10)] py-3"
-          : "bg-transparent py-4",
+          ? "bg-white/95 dark:bg-[#111]/95 backdrop-blur-md shadow-[0_2px_24px_rgba(0,0,0,0.10)] py-0 md:py-3"
+          : "bg-transparent py-0 md:py-4",
       ].join(" ")}
     >
       {/* ── Desktop layout ── */}
@@ -137,7 +122,7 @@ export function Navbar() {
             }
             onClick={toggleDark}
             className={[
-              "ml-2 p-2 h-11 w-11 border border-[#ffffff]/40 rounded-full transition-colors duration-200",
+              "hidden ml-2 p-2 h-11 w-11 border border-[#ffffff]/40 rounded-full transition-colors duration-200",
               scrolled
                 ? "bg-gray-100 dark:bg-white/10 text-[#222] dark:text-[#f5f5f5]"
                 : "bg-white/10 hover:bg-white/20 text-[#f5f5f5]",
@@ -171,7 +156,7 @@ export function Navbar() {
             }
             onClick={toggleDark}
             className={[
-              "p-2 rounded-full transition-colors duration-200",
+              "hidden p-2 rounded-full transition-colors duration-200",
               scrolled || menuOpen
                 ? "bg-gray-100 dark:bg-white/10 text-[#222] dark:text-[#f5f5f5]"
                 : "bg-white/10 text-[#f5f5f5]",

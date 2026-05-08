@@ -18,17 +18,17 @@ export function AppSection() {
       id="app"
       ref={ref}
       aria-label="Download AC Doctor App"
-      className="py-16 md:py-20 bg-white dark:bg-[#111] overflow-hidden"
+      className="py-[38px] md:py-20 bg-[#f5f5f5] md:bg-white dark:bg-[#111] overflow-hidden"
     >
-      <div className="max-w-[1362px] mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
+      <div className="max-w-[1362px] mx-auto px-4 sm:px-8 lg:px-10">
+        <div className="flex flex-col lg:flex-row items-center gap-[18px] md:gap-12 lg:gap-0">
           {/* ══════════════════════════════════════════
               LEFT — Phone mockups + blob + mascot
           ══════════════════════════════════════════ */}
           <div
             className={[
-              "relative w-full lg:w-[53%] shrink-0",
-              "h-[420px] sm:h-[520px] md:h-[580px] lg:h-[620px]",
+              "relative w-full lg:w-[53%] shrink-0 order-2 lg:order-1",
+              "h-[330px] sm:h-[520px] md:h-[580px] lg:h-[620px]",
               "transition-all duration-700",
               isInView
                 ? "opacity-100 translate-x-0"
@@ -86,9 +86,9 @@ export function AppSection() {
             <div
               className="absolute z-20"
               style={{
-                left: "15%",
+                left: "9%",
                 top: "0%",
-                width: "72%",
+                width: "82%",
                 height: "94%",
               }}
             >
@@ -106,7 +106,7 @@ export function AppSection() {
             {/* ── Mascot — closer to phone, bottom-anchored ── */}
             {ASSETS.mascot && (
               <div
-                className="absolute z-30 bottom-10 md:bottom-0 left-[12%] w-[22%] sm:w-[18%]"
+                className="absolute z-30 bottom-8 md:bottom-0 left-[2%] md:left-[12%] w-[20%] sm:w-[18%]"
                 aria-hidden="true"
               >
                 <Image
@@ -141,8 +141,8 @@ export function AppSection() {
           ══════════════════════════════════════════ */}
           <div
             className={[
-              "flex flex-col items-center text-center lg:items-start lg:text-left",
-              "gap-10 lg:gap-[44px]",
+              "flex flex-col items-start text-left lg:items-start lg:text-left order-1 lg:order-2",
+              "gap-[18px] md:gap-10 lg:gap-[44px]",
               "w-full lg:w-[47%]",
               "transition-all duration-700 delay-150",
               isInView
@@ -151,11 +151,11 @@ export function AppSection() {
             ].join(" ")}
           >
             {/* Text block */}
-            <div className="flex flex-col gap-[24px] lg:gap-[44px]">
+            <div className="flex flex-col gap-[10px] md:gap-[24px] lg:gap-[44px]">
               {/* Heading — "Download your AC DOCTOR App" */}
               <h2
-                className="font-['Montserrat',sans-serif] font-semibold text-[#222] dark:text-[#f5f5f5] leading-[1.32]"
-                style={{ fontSize: "clamp(32px, 5vw, 68px)" }}
+                className="font-['Montserrat',sans-serif] font-semibold text-[#222] dark:text-[#f5f5f5] leading-[34px] md:leading-[1.32] max-w-[240px] md:max-w-none"
+                style={{ fontSize: "clamp(26px, 5vw, 68px)" }}
               >
                 Download your <span className="text-[#e31e25]">AC DOCTOR</span>{" "}
                 App
@@ -163,8 +163,8 @@ export function AppSection() {
 
               {/* Subtitle */}
               <p
-                className="font-['Montserrat',sans-serif] font-medium text-[#222]/80 dark:text-[#f5f5f5]/70 leading-[1.46]"
-                style={{ fontSize: "clamp(16px, 1.8vw, 26px)" }}
+                className="font-['Montserrat',sans-serif] font-medium text-[#222]/80 dark:text-[#f5f5f5]/70 leading-[20px] md:leading-[1.46]"
+                style={{ fontSize: "clamp(14px, 1.8vw, 26px)" }}
               >
                 Comfort starts with one click,
                 <br />
@@ -173,7 +173,7 @@ export function AppSection() {
             </div>
 
             {/* ── Store buttons — black pill-ish cards, matching Figma ── */}
-            <div className="flex flex-row gap-5 sm:gap-6">
+            <div className="flex flex-row gap-5 sm:gap-6 order-3">
               {/* Google Play */}
               <a
                 href="#"
@@ -181,8 +181,8 @@ export function AppSection() {
                 className="
                   flex items-center justify-center
                   bg-black hover:bg-[#1a1a1a] active:bg-[#111]
-                  rounded-[14px]
-                  w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[65px] lg:h-[70px]
+                  rounded-[6px] md:rounded-[14px]
+                  w-[calc((100vw-52px)/2)] max-w-[166px] sm:w-[180px] sm:max-w-none lg:w-[200px] h-[45px] sm:h-[65px] lg:h-[70px]
                   transition-all duration-200
                   hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]
                   overflow-hidden shrink-0
@@ -204,8 +204,8 @@ export function AppSection() {
                 className="
                   flex items-center justify-center
                   bg-black hover:bg-[#1a1a1a] active:bg-[#111]
-                  rounded-[14px]
-                  w-[160px] sm:w-[180px] lg:w-[200px] h-[60px] sm:h-[65px] lg:h-[70px]
+                  rounded-[6px] md:rounded-[14px]
+                  w-[calc((100vw-52px)/2)] max-w-[166px] sm:w-[180px] sm:max-w-none lg:w-[200px] h-[45px] sm:h-[65px] lg:h-[70px]
                   transition-all duration-200
                   hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]
                   overflow-hidden shrink-0

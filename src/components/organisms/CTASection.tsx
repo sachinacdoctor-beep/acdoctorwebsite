@@ -32,7 +32,7 @@ export function CTASection() {
       ref={ref}
       aria-label="Contact Us"
       className="relative w-full overflow-hidden bg-[#0d0d0d]"
-      style={{ aspectRatio: "16 / 9", minHeight: "clamp(400px, 80vh, 900px)" }}
+      style={{ aspectRatio: "auto", minHeight: "clamp(520px, 80vh, 900px)" }}
     >
       {/* ── Full-bleed background (dark room + red beam) ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -46,40 +46,40 @@ export function CTASection() {
 
       {/* ── AC Unit image — right-centre ── */}
       <div
-        className="absolute pointer-events-none inset-y-0 right-0 flex items-center pr-6 sm:pr-[70px] lg:pr-[110px]"
+        className="absolute pointer-events-none inset-x-0 bottom-0 flex items-end justify-center md:inset-y-0 md:right-0 md:left-auto md:items-center md:pr-6 sm:md:pr-[70px] lg:pr-[110px]"
         aria-hidden="true"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={"./assets/images/ac_outdoor.png"}
           alt=""
-          className="h-[60%] w-auto object-contain"
+          className="h-[210px] md:h-[60%] w-auto object-contain opacity-80 md:opacity-100"
         />
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto flex items-center justify-start h-full px-6 sm:px-[70px] lg:px-[110px] py-8 md:py-12">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto flex items-start md:items-center justify-center md:justify-start h-full px-4 sm:px-[70px] lg:px-[110px] py-[46px] md:py-12">
         {/* ── Contact Card ── */}
         <div
           className={[
-            "bg-white rounded-[20px] border border-[#f5f5f5]",
-            "px-6 sm:px-[40px] py-7 sm:py-[30px]",
-            "flex flex-col gap-[35px]",
-            "w-full max-w-[470px]",
+            "bg-white rounded-[6px] md:rounded-[20px] border border-[#f5f5f5]",
+            "px-[18px] sm:px-[40px] py-[18px] sm:py-[30px]",
+            "flex flex-col gap-[16px] md:gap-[35px]",
+            "w-full max-w-[340px] md:max-w-[470px]",
             "shadow-[0_8px_48px_rgba(0,0,0,0.40)]",
             "transition-all duration-700",
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
           ].join(" ")}
         >
           {/* Heading — Figma: Montserrat SemiBold Italic 50px / lh 70px */}
-          <h2 className="font-['Montserrat',sans-serif] font-semibold italic text-[clamp(32px,4vw,50px)] leading-[1.4] text-black whitespace-nowrap">
+          <h2 className="font-['Montserrat',sans-serif] font-semibold italic text-[26px] md:text-[clamp(32px,4vw,50px)] leading-[34px] md:leading-[1.4] text-black whitespace-nowrap">
             Contact us
           </h2>
 
           {/* Form + Submit */}
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-[45px] w-full"
+            className="flex flex-col gap-[18px] md:gap-[45px] w-full"
             noValidate
           >
             {/* Input fields — gap-[14px] between each */}
@@ -88,12 +88,12 @@ export function CTASection() {
               <label className="sr-only" htmlFor="c-name">
                 Name
               </label>
-              <div className="flex items-center gap-5 border border-[rgba(90,94,104,0.4)] rounded-[10px] pl-5 pr-4 py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
+              <div className="flex items-center gap-3 md:gap-5 border border-[rgba(90,94,104,0.4)] rounded-[3px] md:rounded-[10px] pl-3 md:pl-5 pr-3 md:pr-4 py-[4px] md:py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={ICON_USER}
                   alt=""
-                  className="w-[22px] h-[22px] shrink-0 object-contain"
+                  className="w-[14px] h-[14px] md:w-[22px] md:h-[22px] shrink-0 object-contain"
                   aria-hidden="true"
                 />
                 <input
@@ -103,7 +103,7 @@ export function CTASection() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
-                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[clamp(16px,1.5vw,22px)] leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
+                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[12px] md:text-[clamp(16px,1.5vw,22px)] leading-[24px] md:leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
                 />
               </div>
 
@@ -111,12 +111,12 @@ export function CTASection() {
               <label className="sr-only" htmlFor="c-phone">
                 Phone Number
               </label>
-              <div className="flex items-center gap-5 border border-[rgba(90,94,104,0.4)] rounded-[10px] pl-5 pr-4 py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
+              <div className="flex items-center gap-3 md:gap-5 border border-[rgba(90,94,104,0.4)] rounded-[3px] md:rounded-[10px] pl-3 md:pl-5 pr-3 md:pr-4 py-[4px] md:py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={ICON_PHONE}
                   alt=""
-                  className="w-[22px] h-[22px] shrink-0 object-contain"
+                  className="w-[14px] h-[14px] md:w-[22px] md:h-[22px] shrink-0 object-contain"
                   aria-hidden="true"
                 />
                 <input
@@ -125,7 +125,7 @@ export function CTASection() {
                   placeholder="Phone No."
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[clamp(16px,1.5vw,22px)] leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
+                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[12px] md:text-[clamp(16px,1.5vw,22px)] leading-[24px] md:leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
                 />
               </div>
 
@@ -133,12 +133,12 @@ export function CTASection() {
               <label className="sr-only" htmlFor="c-email">
                 Email
               </label>
-              <div className="flex items-center gap-5 border border-[rgba(90,94,104,0.4)] rounded-[10px] pl-5 pr-4 py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
+              <div className="flex items-center gap-3 md:gap-5 border border-[rgba(90,94,104,0.4)] rounded-[3px] md:rounded-[10px] pl-3 md:pl-5 pr-3 md:pr-4 py-[4px] md:py-[10px] focus-within:border-[#e31e25] transition-colors duration-200">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={ICON_MAIL}
                   alt=""
-                  className="w-[22px] h-[22px] shrink-0 object-contain"
+                  className="w-[14px] h-[14px] md:w-[22px] md:h-[22px] shrink-0 object-contain"
                   aria-hidden="true"
                 />
                 <input
@@ -147,7 +147,7 @@ export function CTASection() {
                   placeholder="Email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[clamp(16px,1.5vw,22px)] leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
+                  className="flex-1 bg-transparent font-['Montserrat',sans-serif] font-medium text-[12px] md:text-[clamp(16px,1.5vw,22px)] leading-[24px] md:leading-[40px] text-[#161616] placeholder:text-[#161616]/40 outline-none min-w-0"
                 />
               </div>
             </div>
@@ -158,8 +158,8 @@ export function CTASection() {
               className="
                 w-full
                 border border-[#e31e25] rounded-[50px]
-                px-[78px] py-[19px]
-                font-['Montserrat',sans-serif] font-semibold text-[clamp(16px,1.4vw,20px)] text-[#e31e25]
+                px-[32px] md:px-[78px] py-[7px] md:py-[19px]
+                font-['Montserrat',sans-serif] font-semibold text-[12px] md:text-[clamp(16px,1.4vw,20px)] text-[#e31e25]
                 bg-transparent
                 hover:bg-[#e31e25] hover:text-white
                 active:bg-[#c8181e] active:border-[#c8181e]

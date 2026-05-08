@@ -21,10 +21,11 @@ export function ServiceCard({
         bg-[#fdfdfd] dark:bg-[#1a1a1a]
         rounded-[10px] shadow-[0px_0px_14px_0px_rgba(0,0,0,0.15)]
         overflow-hidden
-        px-8 pt-6 pb-7
+        px-[10px] pt-[7px] pb-[9px] md:px-8 md:pt-6 md:pb-7
         transition-all duration-500
         hover:shadow-[0px_0px_24px_0px_rgba(227,30,37,0.18)]
         hover:-translate-y-1
+        min-h-[152px] md:min-h-0
       "
       style={{
         opacity: isVisible ? 1 : 0,
@@ -33,14 +34,14 @@ export function ServiceCard({
       }}
     >
       {/* Icon circle */}
-      <div className="flex items-center justify-center w-[106px] h-[106px] rounded-full bg-[#e31e25]/10 dark:bg-[#e31e25]/15 mb-[22px] shrink-0">
+      <div className="flex items-center justify-center w-[52px] h-[52px] md:w-[106px] md:h-[106px] rounded-full bg-[#e31e25]/10 dark:bg-[#e31e25]/15 mb-[9px] md:mb-[22px] shrink-0">
         {service.iconImage ? (
           <Image
             src={service.iconImage}
             alt={service.title}
             width={60}
             height={60}
-            className="object-contain"
+            className="h-[34px] w-[34px] object-contain md:h-[60px] md:w-[60px]"
           />
         ) : (
           <span
@@ -54,11 +55,11 @@ export function ServiceCard({
       </div>
 
       {/* Text block */}
-      <div className="flex flex-col items-center gap-[10px] mb-[22px] w-full max-w-[362px]">
+      <div className="flex flex-col items-center gap-[5px] md:gap-[10px] mb-[8px] md:mb-[22px] w-full max-w-[362px]">
         <h3
           className="
             font-['Montserrat',sans-serif] font-semibold
-            text-[28px] leading-[38px]
+            text-[16px] md:text-[28px] leading-[18px] md:leading-[38px]
             text-[#222] dark:text-[#f5f5f5]
             w-full
           "
@@ -68,7 +69,7 @@ export function ServiceCard({
         <p
           className="
             font-['Montserrat',sans-serif] font-normal
-            text-[16px] leading-[22px]
+            text-[9px] md:text-[16px] leading-[13px] md:leading-[22px]
             text-[#222]/70 dark:text-[#f5f5f5]/60
           "
         >
@@ -87,9 +88,9 @@ export function ServiceCard({
         className="
           flex items-center justify-center gap-[6px]
           border border-[#e31e25] rounded-[20px]
-          px-[48px] py-[12px]
+          px-[12px] md:px-[48px] py-[5px] md:py-[12px]
           font-['Montserrat',sans-serif] font-semibold
-          text-[16px] leading-[22px] text-[#e31e25]
+          text-[9px] md:text-[16px] leading-[13px] md:leading-[22px] text-[#e31e25]
           bg-transparent
           hover:bg-[#e31e25] hover:text-white
           active:bg-[#c8181e]
@@ -101,8 +102,8 @@ export function ServiceCard({
         Book Now
         {/* Arrow right icon */}
         <svg
-          width="20"
-          height="20"
+          width="14"
+          height="14"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
