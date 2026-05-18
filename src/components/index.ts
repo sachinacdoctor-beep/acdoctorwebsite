@@ -14,6 +14,8 @@ export { Navbar } from "./organisms/Navbar";
 export { HeroSection } from "./organisms/HeroSection";
 export { ServicesSection } from "./organisms/ServicesSection";
 export { ProductsSection } from "./organisms/ProductsSection";
+export { ProductPageScreen } from "./organisms/ProductPageScreen";
+export { AboutPageScreen } from "./organisms/AboutPageScreen";
 export { QuoteSection } from "./organisms/QuoteSection";
 export { OEMTicker } from "./organisms/OEMTicker";
 export { AppSection } from "./organisms/AppSection";

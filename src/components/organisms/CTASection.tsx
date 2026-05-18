@@ -5,15 +5,15 @@ import { useInView } from "@/hooks/useInView";
 
 /* ── Figma assets (replace with /public paths before go-live) ── */
 const IMG_BG =
-  "https://www.figma.com/api/mcp/asset/46ebe8f4-5ece-4fff-aaa0-cb6bb324349f";
+  "./assets/images/contact_us_background.png";
 const IMG_AC_UNIT =
-  "https://www.figma.com/api/mcp/asset/6f2fcfe7-202f-4902-aaff-f1c6c396381c";
+  "./assets/images/ac_outdoor.png";
 const ICON_USER =
-  "https://www.figma.com/api/mcp/asset/63c6e436-5fd4-4825-ad26-2cdbdb3bc7cc";
+  "./assets/icons/user.png";
 const ICON_PHONE =
-  "https://www.figma.com/api/mcp/asset/8848dc26-5089-41fe-9f06-d85bb41055ae";
+  "./assets/icons/phone.png";
 const ICON_MAIL =
-  "https://www.figma.com/api/mcp/asset/87db6ebf-360f-4f8f-bc71-4a92b4af2e8e";
+  "./assets/icons/mail.png";
 
 export function CTASection() {
   const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.1 });
@@ -46,7 +46,7 @@ export function CTASection() {
 
       {/* ── AC Unit image — right-centre ── */}
       <div
-        className="absolute pointer-events-none hidden md:flex inset-x-0 bottom-0 items-end justify-center md:inset-y-0 md:right-0 md:left-auto md:items-center md:pr-6 lg:pr-[110px]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 hidden items-end justify-center lg:inset-y-0 lg:left-auto lg:right-0 lg:flex lg:items-center lg:pr-[110px]"
         aria-hidden="true"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -58,7 +58,7 @@ export function CTASection() {
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto flex items-start md:items-center justify-center md:justify-start h-full px-4 sm:px-[70px] lg:px-[110px] py-6 md:py-12">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1600px] items-start justify-center px-4 py-8 sm:px-[70px] md:items-center md:py-14 lg:justify-start lg:px-[110px] lg:py-12">
         {/* ── Contact Card ── */}
         <div
           className={[

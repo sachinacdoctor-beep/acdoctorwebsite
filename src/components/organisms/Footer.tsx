@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 /* ── Figma assets — replace with /public paths before go-live ── */
-const IMG_LOGO_MASCOT = "./assets/logo/ac_doctor.png";
-const ICON_MAIL = "./assets/icons/mail.png";
-const ICON_PHONE = "./assets/icons/phone.png";
+const IMG_LOGO_MASCOT = "/assets/logo/ac_doctor.png";
+const ICON_MAIL = "/assets/icons/mail.png";
+const ICON_PHONE = "/assets/icons/phone.png";
 
 /* ── Inline social SVGs matching Figma vector icons ── */
 function IconFacebook() {
@@ -95,9 +95,9 @@ const SOCIAL = [
 
 const OUR_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
-  { label: "Products", href: "#products" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 const OTHER_PAGES = [
@@ -115,11 +115,11 @@ export function Footer() {
       {/* ── Cyan accent border on desktop ── */}
       {/* <div className="hidden lg:block absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#00d4ff] to-transparent opacity-60"></div> */}
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 lg:pl-[80px] lg:pr-[100px]">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 xl:pl-[80px] xl:pr-[100px]">
         {/* ══ DESKTOP: 4-column grid layout ══ */}
-        <div className="hidden lg:grid lg:grid-cols-[240px_1fr_1fr_1fr] gap-20 py-[44px] relative">
+        <div className="hidden xl:grid xl:grid-cols-[240px_1fr_1fr_1fr] gap-20 py-[44px] relative">
           {/* ── Col 1: Logo + Brand name + Socials ── */}
-          <div className="flex flex-col items-center lg:items-start">
+          <div className="flex flex-col items-center xl:items-start">
             {/* Logo mark — yellow circle background with mascot centered */}
             <div className="w-[118px] h-[118px] mb-4 shrink-0 rounded-full bg-[#FFDF00] flex items-center justify-center overflow-hidden">
               <img
@@ -130,7 +130,7 @@ export function Footer() {
             </div>
 
             {/* Brand name — Inter SemiBold 27px */}
-            <p className="font-['Inter',sans-serif] font-semibold text-[27px] text-white leading-normal tracking-[1.08px] mb-[30px] text-center lg:text-left">
+            <p className="font-['Inter',sans-serif] font-semibold text-[27px] text-white leading-normal tracking-[1.08px] mb-[30px] text-center xl:text-left">
               AC DOCTOR
             </p>
 
@@ -256,7 +256,7 @@ export function Footer() {
         </div>
 
         {/* ══ MOBILE & TABLET: Single column layout ══ */}
-        <div className="lg:hidden flex flex-col gap-8 sm:gap-12 py-8 sm:py-12">
+        <div className="xl:hidden flex flex-col gap-8 sm:gap-12 py-8 sm:py-12">
           {/* Logo + Brand name + Socials */}
           <div className="flex flex-col items-center">
             <div className="w-[105px] h-[105px] sm:w-[118px] sm:h-[118px] mb-3 sm:mb-4 shrink-0 rounded-full bg-[#FFDF00] flex items-center justify-center overflow-hidden">
@@ -286,9 +286,9 @@ export function Footer() {
           </div>
 
           {/* Links in two columns */}
-          <div className="grid grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-['Poppins',sans-serif] font-medium text-[18px] sm:text-[24px] text-[#f5f5f5] leading-normal mb-6 sm:mb-[30px]">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-8">
+            <div className="min-w-0">
+              <h4 className="hidden font-['Poppins',sans-serif] font-medium text-[18px] sm:mb-[30px] sm:block sm:text-[24px] text-[#f5f5f5] leading-normal">
                 Our Links
               </h4>
               <ul className="flex flex-col gap-4 sm:gap-[20px]" role="list">
@@ -305,8 +305,8 @@ export function Footer() {
               </ul>
             </div>
 
-            <div>
-              <h4 className="font-['Poppins',sans-serif] font-medium text-[18px] sm:text-[24px] text-[#f5f5f5] leading-normal mb-6 sm:mb-[30px]">
+            <div className="min-w-0">
+              <h4 className="hidden font-['Poppins',sans-serif] font-medium text-[18px] sm:mb-[30px] sm:block sm:text-[24px] text-[#f5f5f5] leading-normal">
                 Other Pages
               </h4>
               <ul className="flex flex-col gap-4 sm:gap-[20px]" role="list">
@@ -367,7 +367,7 @@ export function Footer() {
       <hr className="border-white/10" />
 
       {/* ══ BOTTOM COPYRIGHT BAR ══ */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 lg:pl-[80px] lg:pr-[100px] py-6 sm:py-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-10 xl:pl-[80px] xl:pr-[100px] py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="font-['Montserrat',sans-serif] font-extralight text-xs sm:text-[13px] text-[#d9d9d9]/60">
             © {year} AC DOCTOR Private LTD. All Rights Reserved.

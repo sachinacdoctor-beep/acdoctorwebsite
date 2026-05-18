@@ -5,15 +5,15 @@ import { ASSETS } from "@/lib/data";
 import { useInView } from "@/hooks/useInView";
 
 const GOOGLE_PLAY_BADGE =
-  "https://www.figma.com/api/mcp/asset/ea024a23-85b1-4da0-ac00-743094f90f42";
+  "./assets/images/play_store.png";
 const APP_STORE_BADGE =
-  "https://www.figma.com/api/mcp/asset/1b50d061-4372-41c1-a3f2-d39e231643d5";
+  "./assets/images/app_store.png";
 
 function StoreButtons({ className = "" }: { className?: string }) {
   return (
     <div className={["flex flex-row gap-5 sm:gap-6", className].join(" ")}>
       <a
-        href="#"
+        href="https://play.google.com/store/apps/details?id=com.acdoctor&hl=en_IN"
         aria-label="Get it on Google Play"
         className="
           flex items-center justify-center
@@ -35,7 +35,7 @@ function StoreButtons({ className = "" }: { className?: string }) {
       </a>
 
       <a
-        href="#"
+        href="https://apps.apple.com/in/app/ac-doctor/id6757523448"
         aria-label="Download on the App Store"
         className="
           flex items-center justify-center
