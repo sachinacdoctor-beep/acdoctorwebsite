@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "acdoctor",
     "public": "out",
     "ignore": [
       "firebase.json",
