@@ -2,47 +2,50 @@
 
 import type { ServiceCard as ServiceCardType } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 interface ServiceCardProps {
   service: ServiceCardType;
-  animationDelay?: number;
-  isVisible?: boolean;
 }
 
-export function ServiceCard({
-  service,
-  animationDelay = 0,
-  isVisible = true,
-}: ServiceCardProps) {
+export function ServiceCard({ service }: ServiceCardProps) {
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const isExternalIcon = /^https?:\/\//.test(service.iconImage || "");
+
+  const isLongDescription = service.description?.length > 90;
+
   return (
     <div
       className="
         relative flex flex-col items-center text-center gap-0
-        bg-[#fdfdfd] dark:bg-[#1a1a1a]
+        bg-[#fdfdfd]
         rounded-[10px] shadow-[0px_0px_14px_0px_rgba(0,0,0,0.15)]
         overflow-hidden
         px-[10px] pt-[7px] pb-[9px] md:px-8 md:pt-6 md:pb-7
-        transition-all duration-500
         hover:shadow-[0px_0px_24px_0px_rgba(227,30,37,0.18)]
-        hover:-translate-y-1
         min-h-[152px] md:min-h-0
       "
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.55s ease ${animationDelay}ms, transform 0.55s ease ${animationDelay}ms`,
-      }}
     >
       {/* Icon circle */}
-      <div className="flex items-center justify-center w-[52px] h-[52px] md:w-[106px] md:h-[106px] rounded-full bg-[#e31e25]/10 dark:bg-[#e31e25]/15 mb-[9px] md:mb-[22px] shrink-0">
+      <div className="flex items-center justify-center w-[52px] h-[52px] md:w-[106px] md:h-[106px] rounded-full bg-[#e31e25]/10 mb-[9px] md:mb-[22px] shrink-0">
         {service.iconImage ? (
-          <Image
-            src={service.iconImage}
-            alt={service.title}
-            width={60}
-            height={60}
-            className="h-[34px] w-[34px] object-contain md:h-[60px] md:w-[60px]"
-          />
+          isExternalIcon ? (
+            <img
+              src={service.iconImage}
+              alt={service.title}
+              className="h-[34px] w-[34px] object-contain md:h-[60px] md:w-[60px]"
+            />
+          ) : (
+            <Image
+              src={service.iconImage}
+              alt={service.title}
+              width={60}
+              height={60}
+              className="h-[34px] w-[34px] object-contain md:h-[60px] md:w-[60px]"
+            />
+          )
         ) : (
           <span
             role="img"
@@ -60,30 +63,45 @@ export function ServiceCard({
           className="
             font-['Montserrat',sans-serif] font-semibold
             text-[16px] md:text-[28px] leading-[18px] md:leading-[38px]
-            text-[#222] dark:text-[#f5f5f5]
+            text-[#222]
             w-full
           "
         >
           {service.title}
         </h3>
+
         <p
-          className="
+          className={`
             font-['Montserrat',sans-serif] font-normal
             text-[9px] md:text-[16px] leading-[13px] md:leading-[22px]
-            text-[#222]/70 dark:text-[#f5f5f5]/60
-          "
+            text-[#222]/70
+            transition-all duration-300
+            ${showFullDescription ? "" : "line-clamp-2 md:line-clamp-3"}
+          `}
         >
           {service.description}
         </p>
+
+        {isLongDescription && (
+          <button
+            type="button"
+            onClick={() => setShowFullDescription(!showFullDescription)}
+            className="
+              font-['Montserrat',sans-serif] font-semibold
+              text-[9px] md:text-[14px]
+              text-[#e31e25]
+              hover:underline
+              mt-[2px]
+            "
+          >
+            {showFullDescription ? "Show less" : "Show more"}
+          </button>
+        )}
       </div>
 
       {/* Book Now button */}
-      <button
-        onClick={() =>
-          document
-            .getElementById("book")
-            ?.scrollIntoView({ behavior: "smooth" })
-        }
+      <Link
+        href={`/book-service/${service.id}`}
         aria-label={`Book ${service.title}`}
         className="
           flex items-center justify-center gap-[6px]
@@ -94,20 +112,18 @@ export function ServiceCard({
           bg-transparent
           hover:bg-[#e31e25] hover:text-white
           active:bg-[#c8181e]
-          transition-all duration-200
           w-full
           group/btn
         "
       >
         Book Now
-        {/* Arrow right icon */}
         <svg
           width="14"
           height="14"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="shrink-0 transition-transform duration-200 group-hover/btn:translate-x-1"
+          className="shrink-0"
           aria-hidden="true"
         >
           <path
@@ -118,7 +134,7 @@ export function ServiceCard({
             strokeLinejoin="round"
           />
         </svg>
-      </button>
+      </Link>
     </div>
   );
 }

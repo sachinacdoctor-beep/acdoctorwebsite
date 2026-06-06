@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { productDetailHref } from "@/lib/productLinks";
 
 interface ApiProduct {
   _id: string;
@@ -24,7 +25,7 @@ const AC_TYPES = [
   { label: "Cassette AC", image: "/assets/images/cassette-ac.png" },
   { label: "Ducted AC", image: "/assets/images/ductable-ac.png" },
   { label: "Tower AC", image: "/assets/images/tower-ac.png" },
-  { label: "Split AC", image: "/assets/images/split-ac.png" },
+  { label: "VRV/VRF AC", image: "/assets/images/asdsd.png" },
 ];
 
 const FALLBACK_PRODUCTS: ApiProduct[] = [
@@ -167,13 +168,14 @@ function ProductNavButton({
       type="button"
       onClick={onClick}
       aria-label={direction === "left" ? "Previous products" : "Next products"}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e9e9e9] transition hover:bg-[#e31e25]/10 md:h-[50px] md:w-[50px]"
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-transparent hover:opacity-75 md:h-[50px] md:w-[50px]"
     >
       <Image
         src={`/assets/icons/${direction === "left" ? "left_arrow" : "right_arrow"}.png`}
         alt=""
-        width={18}
-        height={18}
+        width={direction === "left" ? 22 : 22}
+        height={22}
+        className="object-contain"
         aria-hidden="true"
       />
     </button>
@@ -183,18 +185,26 @@ function ProductNavButton({
 function NewProductCard({ product }: { product: ApiProduct }) {
   const discount = discountFor(product);
   const hasProduct = !product._id.startsWith("fallback-");
+  const detailHref = hasProduct ? productDetailHref(product._id) : "#";
 
   const card = (
-    <article className="h-full min-h-[244px] w-[198px] flex-none overflow-hidden rounded-[8px] bg-white shadow-[0_3px_14px_rgba(0,0,0,0.08)] dark:bg-[#1a1a1a] md:min-h-[505px] md:w-auto">
-      <div className="flex h-[140px] items-center justify-center bg-white p-3 dark:bg-[#222] md:h-[288px] md:p-6">
+    <article className="flex h-full min-h-[314px] w-[210px] flex-none flex-col overflow-hidden rounded-[12px] bg-white shadow-[0_3px_14px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_12px_26px_rgba(0,0,0,0.14)] sm:w-[238px] md:min-h-[470px] md:w-[318px] lg:w-[360px]">
+      <Link
+        href={detailHref}
+        className="flex h-[150px] items-center justify-center bg-white p-3 md:h-[258px] md:p-6"
+      >
         <ProductImage src={product.image} alt={product.name} />
-      </div>
-      <div className="px-3 pb-4 pt-3 md:px-5 md:pb-6 md:pt-5">
-        <h3 className="line-clamp-3 text-[16px] font-bold leading-[21px] text-[#2a2a2a] dark:text-[#f5f5f5] md:text-[25px] md:leading-[33px]">
-          {product.name}
-        </h3>
+      </Link>
+
+      <div className="flex flex-1 flex-col px-3 pb-4 pt-3 md:px-5 md:pb-6 md:pt-5">
+        <Link href={detailHref} className="block">
+          <h3 className="line-clamp-3 text-[16px] font-bold leading-[21px] text-[#2a2a2a] md:text-[24px] md:leading-[32px]">
+            {product.name}
+          </h3>
+        </Link>
+
         <div className="mt-3 flex flex-wrap items-end gap-2 md:mt-4">
-          <span className="text-[20px] font-bold leading-none text-[#101010] dark:text-white md:text-[34px]">
+          <span className="text-[20px] font-bold leading-none text-[#101010] md:text-[32px]">
             {formatPrice(product.customerPrice)}
           </span>
           {discount > 0 && (
@@ -203,32 +213,34 @@ function NewProductCard({ product }: { product: ApiProduct }) {
             </span>
           )}
         </div>
+
+        <Link
+          href={detailHref}
+          className="mt-8  inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-full border border-[#e31e25] bg-white px-4 text-[12px] font-bold uppercase tracking-[0.12em] text-[#e31e25] hover:bg-[#fff1f1] md:min-h-[50px] md:text-[14px]"
+        >
+          View Details
+          <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
     </article>
   );
 
-  return hasProduct ? (
-    <Link href={`/products/${product._id}`} className="block h-full">
-      {card}
-    </Link>
-  ) : (
-    card
-  );
+  return card;
 }
 
 function CatalogProductCard({ product }: { product: ApiProduct }) {
   const hasProduct = !product._id.startsWith("fallback-");
 
   const card = (
-    <article className="h-full min-h-[214px] overflow-hidden rounded-[10px] bg-white p-[10px] shadow-[0_0_13px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_22px_rgba(0,0,0,0.14)] dark:bg-[#1a1a1a] md:min-h-[354px] md:p-[13px]">
-      <div className="flex h-[120px] items-center justify-center rounded-[8px] bg-white p-3 dark:bg-[#222] md:h-[230px] md:p-5">
+    <article className="h-full min-h-[214px] overflow-hidden rounded-[10px] bg-white p-[10px] shadow-[0_0_13px_rgba(0,0,0,0.15)] hover:shadow-[0_10px_22px_rgba(0,0,0,0.14)] md:min-h-[354px] md:p-[13px]">
+      <div className="flex h-[120px] items-center justify-center rounded-[8px] bg-white p-3 md:h-[230px] md:p-5">
         <ProductImage src={product.image} alt={product.name} />
       </div>
       <div className="pt-3 md:pt-4">
-        <h3 className="line-clamp-2 text-[12px] font-bold leading-[16px] text-[#242424] dark:text-[#f5f5f5] md:text-[14px] md:leading-[20px]">
+        <h3 className="line-clamp-2 text-[12px] font-bold leading-[16px] text-[#242424] md:text-[14px] md:leading-[20px]">
           {product.name}
         </h3>
-        <p className="mt-2 text-[18px] font-bold leading-none text-[#242424] dark:text-white md:text-[23px]">
+        <p className="mt-2 text-[18px] font-bold leading-none text-[#242424] md:text-[23px]">
           {formatPrice(product.customerPrice)}
         </p>
         <span className="mt-3 inline-flex border-b border-[#e31e25] pb-[1px] text-[10px] font-semibold text-[#e31e25] md:text-[13px]">
@@ -239,11 +251,14 @@ function CatalogProductCard({ product }: { product: ApiProduct }) {
   );
 
   return hasProduct ? (
-    <Link href={`/products/${product._id}`} className="block h-full flex-none w-[160px] md:w-auto">
+    <Link
+      href={productDetailHref(product._id)}
+      className="block h-full w-full"
+    >
       {card}
     </Link>
   ) : (
-    <div className="w-[160px] flex-none md:w-auto h-full">{card}</div>
+    <div className="h-full w-full">{card}</div>
   );
 }
 
@@ -259,18 +274,16 @@ function FilterOptionGroup({
   onToggle: (value: string) => void;
 }) {
   return (
-    <details className="group border-b border-[#dadada] py-[17px] last:border-0 dark:border-[#333]">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-[#292929] dark:text-[#f5f5f5] [&::-webkit-details-marker]:hidden">
+    <details className="group border-b border-[#dadada] py-[17px] last:border-0">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-[#292929] [&::-webkit-details-marker]:hidden">
         {label}
-        <span className="text-[18px] leading-none transition group-open:rotate-180">
-          v
-        </span>
+        <span className="text-[18px] leading-none">v</span>
       </summary>
       <div className="grid gap-2 pt-4">
         {options.map((option) => (
           <label
             key={option}
-            className="flex cursor-pointer items-center gap-3 text-[13px] font-medium text-[#555] dark:text-[#ccc]"
+            className="flex cursor-pointer items-center gap-3 text-[13px] font-medium text-[#555]"
           >
             <input
               type="checkbox"
@@ -288,13 +301,13 @@ function FilterOptionGroup({
 
 export function ProductsListScreen() {
   const newProductsRef = useRef<HTMLDivElement>(null);
-  const suggestedRef = useRef<HTMLDivElement>(null);
+  const [suggestedPage, setSuggestedPage] = useState(0);
+  const SUGGESTED_PAGE_SIZE = 8;
 
   const [products, setProducts] = useState<ApiProduct[]>([]);
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(0);
   const [activeBrands, setActiveBrands] = useState<string[]>([]);
   const [activeTypes, setActiveTypes] = useState<string[]>([]);
-  const [activeTonnages, setActiveTonnages] = useState<string[]>([]);
   const [activeRatings, setActiveRatings] = useState<string[]>([]);
   const [activeTechniques, setActiveTechniques] = useState<string[]>([]);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -304,7 +317,9 @@ export function ProductsListScreen() {
   const globalMinPrice = useMemo(
     () =>
       Math.min(
-        ...visibleProducts.map((product) => toPriceNumber(product.customerPrice)),
+        ...visibleProducts.map((product) =>
+          toPriceNumber(product.customerPrice),
+        ),
       ),
     [visibleProducts],
   );
@@ -312,7 +327,9 @@ export function ProductsListScreen() {
   const globalMaxPrice = useMemo(
     () =>
       Math.max(
-        ...visibleProducts.map((product) => toPriceNumber(product.customerPrice)),
+        ...visibleProducts.map((product) =>
+          toPriceNumber(product.customerPrice),
+        ),
       ),
     [visibleProducts],
   );
@@ -336,14 +353,6 @@ export function ProductsListScreen() {
       Array.from(
         new Set(visibleProducts.map((product) => product.acType ?? "Split AC")),
       ).sort(),
-    [visibleProducts],
-  );
-
-  const tonnageOptions = useMemo(
-    () =>
-      Array.from(
-        new Set(visibleProducts.map((product) => product.tonnage ?? "1.5")),
-      ).sort((a, b) => Number(a) - Number(b)),
     [visibleProducts],
   );
 
@@ -394,12 +403,6 @@ export function ProductsListScreen() {
         return false;
       }
 
-      if (
-        activeTonnages.length > 0 &&
-        !activeTonnages.includes(product.tonnage ?? "1.5")
-      ) {
-        return false;
-      }
 
       if (
         activeRatings.length > 0 &&
@@ -408,14 +411,16 @@ export function ProductsListScreen() {
         return false;
       }
 
-      const technology = product.inverter === false ? "Non-Inverter" : "Inverter";
-      return activeTechniques.length === 0 || activeTechniques.includes(technology);
+      const technology =
+        product.inverter === false ? "Non-Inverter" : "Inverter";
+      return (
+        activeTechniques.length === 0 || activeTechniques.includes(technology)
+      );
     });
   }, [
     activeBrands,
     activeRatings,
     activeTechniques,
-    activeTonnages,
     activeTypes,
     selectedMaxPrice,
     visibleProducts,
@@ -427,7 +432,7 @@ export function ProductsListScreen() {
     async function fetchProducts() {
       try {
         const response = await fetch(
-          "https://api.acdoctor.in/api/v1/admin/shop/product-list?page=1&limit=12",
+          "https://api.acdoctor.in/api/v1/user/products?page=1&limit=100",
           { signal: controller.signal },
         );
         const data = await response.json();
@@ -446,25 +451,49 @@ export function ProductsListScreen() {
     return () => controller.abort();
   }, []);
 
+  const suggestedProductPool =
+    filteredProducts.length > 0 ? filteredProducts : visibleProducts;
+
+  const suggestedPageCount = Math.max(
+    1,
+    Math.ceil(suggestedProductPool.length / SUGGESTED_PAGE_SIZE),
+  );
+
+  const safeSuggestedPage = Math.min(suggestedPage, suggestedPageCount - 1);
+
   const scrollProducts = useCallback(
     (target: "new" | "suggested", direction: "left" | "right") => {
-      const element =
-        target === "new" ? newProductsRef.current : suggestedRef.current;
+      if (target === "suggested") {
+        setSuggestedPage((currentPage) => {
+          const nextPage = direction === "right" ? currentPage + 1 : currentPage - 1;
+          return Math.max(0, Math.min(nextPage, suggestedPageCount - 1));
+        });
+        return;
+      }
+
+      const element = newProductsRef.current;
       if (!element) return;
       element.scrollBy({
-        left: direction === "right" ? 320 : -320,
+        left: direction === "right" ? 360 : -360,
         behavior: "smooth",
       });
     },
-    [],
+    [suggestedPageCount],
   );
 
-  const newProducts = visibleProducts.slice(0, 3);
-  const suggestedProducts = filteredProducts.length > 0 ? filteredProducts : visibleProducts;
+  useEffect(() => {
+    setSuggestedPage(0);
+  }, [activeBrands, activeRatings, activeTechniques, activeTypes, selectedMaxPrice]);
+
+  const newProducts = visibleProducts;
+  const suggestedProducts = suggestedProductPool.slice(
+    safeSuggestedPage * SUGGESTED_PAGE_SIZE,
+    safeSuggestedPage * SUGGESTED_PAGE_SIZE + SUGGESTED_PAGE_SIZE,
+  );
 
   return (
-    <div className="overflow-hidden bg-[#f5f5f5] text-[#222] dark:bg-[#111] dark:text-[#f5f5f5]">
-      <section className="relative flex h-[503px] items-center justify-center overflow-hidden bg-[#111] text-white md:h-[850px]">
+    <div className="overflow-hidden bg-[#f5f5f5] text-[#222]">
+      <section className="relative flex h-[503px] items-center justify-center overflow-hidden bg-white text-[#222] md:h-[850px]">
         <Image
           src="/assets/images/product-hero-bg.png"
           alt=""
@@ -485,14 +514,14 @@ export function ProductsListScreen() {
           </p>
           <Link
             href="#products"
-            className="mt-7 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#e31e25] px-9 text-[18px] font-bold text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] transition hover:bg-[#c8181e] md:mt-9 md:min-h-[72px] md:bg-white/15 md:px-12 md:text-[16px] md:font-semibold md:backdrop-blur-md md:hover:bg-white/25"
+            className="mt-7 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#e31e25] px-9 text-[18px] font-bold text-white shadow-[0_12px_24px_rgba(0,0,0,0.24)] hover:bg-[#c8181e] md:mt-9 md:min-h-[72px] md:bg-white/15 md:px-12 md:text-[16px] md:font-semibold md:backdrop-blur-md md:hover:bg-white/25"
           >
             Shop Now
           </Link>
         </div>
       </section>
 
-      <section className="bg-[#f5f5f5] py-11 md:py-[108px] dark:bg-[#111]">
+      <section className="bg-[#f5f5f5] py-11 md:py-[108px]">
         <div className="mx-auto max-w-[1362px] px-5 sm:px-8 lg:px-10">
           <h2 className="mb-6 text-center text-[22px] font-bold leading-[28px] md:hidden">
             AC Type
@@ -504,7 +533,7 @@ export function ProductsListScreen() {
                 type="button"
                 className="group flex min-w-0 flex-col items-center gap-3"
               >
-                <span className="flex h-[74px] w-[74px] items-center justify-center rounded-full bg-[#fff1f1] p-3 transition group-hover:bg-[#ffe5e5] md:h-[108px] md:w-[108px] md:p-4">
+                <span className="flex h-[74px] w-[74px] items-center justify-center rounded-full bg-[#fff1f1] p-3 -[#ffe5e5] md:h-[108px] md:w-[108px] md:p-4">
                   <img
                     src={type.image}
                     alt=""
@@ -513,7 +542,7 @@ export function ProductsListScreen() {
                     loading="lazy"
                   />
                 </span>
-                <span className="text-center text-[13px] font-bold italic leading-[18px] text-[#333] dark:text-[#f5f5f5] md:text-[19px] md:leading-[25px]">
+                <span className="text-center text-[13px] font-bold italic leading-[18px] text-[#333] md:text-[19px] md:leading-[25px]">
                   {type.label}
                 </span>
               </button>
@@ -522,14 +551,14 @@ export function ProductsListScreen() {
         </div>
       </section>
 
-      <section id="products" className="bg-[#f5f5f5] pb-5 dark:bg-[#111] md:pb-[70px]">
+      <section id="products" className="bg-[#f5f5f5] pb-5 md:pb-[70px]">
         <div className="mx-auto max-w-[1362px] px-5 sm:px-8 lg:px-10">
           <div className="mb-4 flex items-center justify-between gap-5 md:mb-11">
             <div>
-              <h2 className="text-[22px] font-bold leading-[28px] text-[#2b2b2b] dark:text-[#f5f5f5] md:text-[40px] md:leading-[54px]">
+              <h2 className="text-[22px] font-bold leading-[28px] text-[#2b2b2b] md:text-[40px] md:leading-[54px]">
                 New Product
               </h2>
-              <p className="mt-2 hidden max-w-[480px] text-[15px] font-medium leading-[24px] text-[#555] dark:text-[#ccc] md:block">
+              <p className="mt-2 hidden max-w-[480px] text-[15px] font-medium leading-[24px] text-[#555] md:block">
                 Explore top-quality inverter ACs with energy-saving performance
                 and powerful cooling for every season.
               </p>
@@ -548,7 +577,7 @@ export function ProductsListScreen() {
 
           <div
             ref={newProductsRef}
-            className="flex gap-[18px] overflow-x-auto pb-2 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible"
+            className="flex gap-[18px] overflow-x-auto scroll-smooth pb-3 pr-1 md:gap-5"
             style={{ scrollbarWidth: "none" }}
           >
             {newProducts.map((product) => (
@@ -558,16 +587,16 @@ export function ProductsListScreen() {
         </div>
       </section>
 
-      <section className="bg-[#f5f5f5] pb-[90px] pt-0 dark:bg-[#111] md:pb-[110px] md:pt-[40px]">
+      <section className="bg-[#f5f5f5] pb-[90px] pt-0 md:pb-[110px] md:pt-[40px]">
         <div className="mx-auto max-w-[1362px] px-5 sm:px-8 lg:px-10">
           <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
-            <h2 className="text-[22px] font-bold leading-[28px] text-[#2b2b2b] dark:text-[#f5f5f5]">
+            <h2 className="text-[22px] font-bold leading-[28px] text-[#2b2b2b]">
               Suggested For You
             </h2>
             <div className="flex shrink-0 items-center gap-2">
               <button
                 onClick={() => setShowMobileFilter(true)}
-                className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[14px] font-semibold text-[#2b2b2b] shadow-sm dark:bg-[#1a1a1a] dark:text-[#f5f5f5]"
+                className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[14px] font-semibold text-[#2b2b2b] shadow-sm"
               >
                 <Image
                   src="/assets/icons/Filter.png"
@@ -589,7 +618,7 @@ export function ProductsListScreen() {
             </div>
           </div>
           <div className="mb-4 hidden items-center justify-between gap-5 lg:flex">
-            <h2 className="text-[40px] font-bold leading-[54px] text-[#2b2b2b] dark:text-[#f5f5f5]">
+            <h2 className="text-[40px] font-bold leading-[54px] text-[#2b2b2b]">
               Suggested For You
             </h2>
             <div className="flex shrink-0 items-center gap-[10px]">
@@ -608,22 +637,27 @@ export function ProductsListScreen() {
             <aside
               className={`${
                 showMobileFilter
-                  ? "fixed inset-0 z-50 overflow-y-auto bg-white p-5 dark:bg-[#111]"
-                  : "hidden lg:block lg:min-h-[614px] rounded-[7px] bg-white p-5 dark:bg-[#1a1a1a]"
+                  ? "fixed inset-0 z-50 overflow-y-auto bg-white p-5"
+                  : "hidden lg:block lg:min-h-[614px] rounded-[7px] bg-white p-5"
               }`}
             >
               <div className="mb-6 flex items-center justify-between lg:hidden">
-                <h2 className="text-[24px] font-bold text-[#333] dark:text-[#f5f5f5]">Filter</h2>
-                <button onClick={() => setShowMobileFilter(false)} className="text-[28px] leading-none text-[#333] dark:text-[#f5f5f5]">&times;</button>
+                <h2 className="text-[24px] font-bold text-[#333]">Filter</h2>
+                <button
+                  onClick={() => setShowMobileFilter(false)}
+                  className="text-[28px] leading-none text-[#333]"
+                >
+                  &times;
+                </button>
               </div>
-              <h2 className="mb-3 hidden text-center text-[28px] font-bold italic leading-[36px] text-[#333] dark:text-[#f5f5f5] lg:block">
+              <h2 className="mb-3 hidden text-center text-[28px] font-bold italic leading-[36px] text-[#333] lg:block">
                 Filter
               </h2>
 
-              <div className="border-b border-[#dadada] pb-8 pt-2 dark:border-[#333]">
+              <div className="border-b border-[#dadada] pb-8 pt-2">
                 <label
                   htmlFor="price-filter"
-                  className="mb-5 block text-[16px] font-semibold text-[#292929] dark:text-[#f5f5f5]"
+                  className="mb-5 block text-[16px] font-semibold text-[#292929]"
                 >
                   Price
                 </label>
@@ -636,9 +670,9 @@ export function ProductsListScreen() {
                   onChange={(event) =>
                     setSelectedMaxPrice(Number(event.target.value))
                   }
-                  className="h-[4px] w-full accent-[#111] dark:accent-[#f5f5f5]"
+                  className="h-[4px] w-full accent-[#111]"
                 />
-                <div className="mt-2 flex justify-between text-[11px] font-medium text-[#555] dark:text-[#ccc]">
+                <div className="mt-2 flex justify-between text-[11px] font-medium text-[#555]">
                   <span>{formatPrice(globalMinPrice)}</span>
                   <span>{formatPrice(selectedMaxPrice || globalMaxPrice)}</span>
                 </div>
@@ -648,20 +682,16 @@ export function ProductsListScreen() {
                 label="Brand"
                 options={brandOptions}
                 selected={activeBrands}
-                onToggle={(value) => toggleValue(value, activeBrands, setActiveBrands)}
+                onToggle={(value) =>
+                  toggleValue(value, activeBrands, setActiveBrands)
+                }
               />
               <FilterOptionGroup
                 label="AC Type"
                 options={typeOptions}
                 selected={activeTypes}
-                onToggle={(value) => toggleValue(value, activeTypes, setActiveTypes)}
-              />
-              <FilterOptionGroup
-                label="Tonnage"
-                options={tonnageOptions}
-                selected={activeTonnages}
                 onToggle={(value) =>
-                  toggleValue(value, activeTonnages, setActiveTonnages)
+                  toggleValue(value, activeTypes, setActiveTypes)
                 }
               />
               <FilterOptionGroup
@@ -680,23 +710,19 @@ export function ProductsListScreen() {
                   toggleValue(value, activeTechniques, setActiveTechniques)
                 }
               />
-              
+
               <div className="mt-8 lg:hidden">
                 <button
                   onClick={() => setShowMobileFilter(false)}
-                  className="w-full rounded-full bg-[#e31e25] py-3 text-center text-[16px] font-bold text-white transition hover:bg-[#c8181e]"
+                  className="w-full rounded-full bg-[#e31e25] py-3 text-center text-[16px] font-bold text-white hover:bg-[#c8181e]"
                 >
                   Apply Filters
                 </button>
               </div>
             </aside>
 
-            <div
-              ref={suggestedRef}
-              className="flex gap-[10px] overflow-x-auto pb-2 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-9 md:overflow-visible xl:grid-cols-4"
-              style={{ scrollbarWidth: "none" }}
-            >
-              {suggestedProducts.slice(0, 12).map((product) => (
+            <div className="grid grid-cols-2 gap-[10px] pb-2 pr-1 sm:grid-cols-3 md:gap-8 xl:grid-cols-4">
+              {suggestedProducts.map((product) => (
                 <CatalogProductCard key={product._id} product={product} />
               ))}
             </div>

@@ -8,19 +8,19 @@ import { CTASection } from "@/components/organisms/CTASection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home",
+ title: "Home",
 };
 
 export default function HomePage() {
-  return (
-    <>
-      <HeroSection />
-      <ServicesSection />
-      <ProductsSection />
-      <QuoteSection />
-      <OEMTicker />
-      <AppSection />
-      <CTASection />
-    </>
-  );
+ return (
+ <>
+ <HeroSection />
+ <ServicesSection />
+ <ProductsSection />
+ <QuoteSection />
+ <OEMTicker />
+ <AppSection />
+ <CTASection />
+ </>
+ );
 }

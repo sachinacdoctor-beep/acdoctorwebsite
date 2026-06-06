@@ -4,14 +4,14 @@ Production-ready Next.js website for AC Doctor — built from the Figma design u
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS v3 |
-| Animation | CSS keyframes + `useInView` hook |
-| Dark Mode | Class-based (`dark:`) with `localStorage` persistence |
-| Architecture | Atomic Design |
+| Layer        | Technology                                            |
+| ------------ | ----------------------------------------------------- |
+| Framework    | Next.js 15 (App Router)                               |
+| Language     | TypeScript (strict)                                   |
+| Styling      | Tailwind CSS v3                                       |
+| Animation    | CSS keyframes + `useInView` hook                      |
+| Dark Mode    | Class-based (`dark:`) with `localStorage` persistence |
+| Architecture | Atomic Design                                         |
 
 ---
 
@@ -25,7 +25,7 @@ npm install
 npm run dev
 
 # 3. Open browser
-open http://localhost:3000
+open http://localhost:1010
 ```
 
 ---
@@ -64,11 +64,10 @@ src/
 ## Design Tokens (from Figma)
 
 ```css
---color-primary:    #E31E25   /* Brand red */
---color-white-bg:   #F5F5F5   /* Light background */
---color-black-bg:   #161616   /* Dark background */
---color-text:       #222222   /* Primary text */
---color-secondary:  #D9D9D9   /* Muted text */
+--color-primary: #e31e25 /* Brand red */ --color-white-bg: #f5f5f5
+  /* Light background */ --color-black-bg: #161616 /* Dark background */
+  --color-text: #222222 /* Primary text */ --color-secondary: #d9d9d9
+  /* Muted text */;
 ```
 
 ---
@@ -88,12 +87,12 @@ Pages        →  app/page.tsx (HomePage)
 
 ## Responsiveness
 
-| Breakpoint | Layout |
-|-----------|--------|
-| Mobile (375px+) | Single column, stacked sections |
-| Tablet (640px+) | 2-column grids, side-by-side CTAs |
+| Breakpoint        | Layout                                                   |
+| ----------------- | -------------------------------------------------------- |
+| Mobile (375px+)   | Single column, stacked sections                          |
+| Tablet (640px+)   | 2-column grids, side-by-side CTAs                        |
 | Desktop (1024px+) | 3+ column grids, full nav pill, side-by-side app section |
-| Wide (1280px+) | Max-width containers, full carousel |
+| Wide (1280px+)    | Max-width containers, full carousel                      |
 
 **Mobile-first approach** — all base styles target 375px, with `sm:`, `md:`, `lg:`, `xl:` utilities layered on top.
 

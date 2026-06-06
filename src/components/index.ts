@@ -21,6 +21,7 @@ export { OEMTicker } from "./organisms/OEMTicker";
 export { AppSection } from "./organisms/AppSection";
 export { CTASection } from "./organisms/CTASection";
 export { Footer } from "./organisms/Footer";
+export { ProfileScreen } from "./organisms/ProfileScreen";
 
 // Templates
 export { RootLayoutTemplate } from "./templates/RootLayoutTemplate";
